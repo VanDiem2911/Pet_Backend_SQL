@@ -24,8 +24,8 @@ public class Promotion {
     private String imageUrl;
     private String serviceCode;
     @NotNull private Boolean active = true;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "promotion_tiers", joinColumns = @JoinColumn(name = "promotion_id"))
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "promotion_id")
     private List<PromotionTier> tiers = new ArrayList<>();
     private String promotionType = "PREBOOK";
     private Integer advanceHours = 24;

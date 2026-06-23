@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.LinkedHashSet;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,13 +25,13 @@ public class PetService {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "service_bullets", joinColumns = @JoinColumn(name = "service_id"))
-    @Column(name = "bullet_point", length = 500)
-    private List<String> bulletPoints = new ArrayList<>();
+    @Column(name = "bullet_point", length = 500, nullable = false)
+    private Set<String> bulletPoints = new LinkedHashSet<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "service_images", joinColumns = @JoinColumn(name = "service_id"))
-    @Column(name = "image_url", length = 500)
-    private List<String> imageUrls = new ArrayList<>();
+    @Column(name = "image_url", length = 500, nullable = false)
+    private Set<String> imageUrls = new LinkedHashSet<>();
     @NotNull private Boolean active = true;
     private Integer sortOrder = 0;
 
@@ -47,10 +49,10 @@ public class PetService {
     public void setUnit(String unit) { this.unit = unit; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
-    public List<String> getBulletPoints() { return bulletPoints; }
-    public void setBulletPoints(List<String> bulletPoints) { this.bulletPoints = bulletPoints == null ? new ArrayList<>() : bulletPoints; }
-    public List<String> getImageUrls() { return imageUrls; }
-    public void setImageUrls(List<String> imageUrls) { this.imageUrls = imageUrls == null ? new ArrayList<>() : imageUrls; }
+    public List<String> getBulletPoints() { return new ArrayList<>(bulletPoints); }
+    public void setBulletPoints(List<String> bulletPoints) { this.bulletPoints = bulletPoints == null ? new LinkedHashSet<>() : new LinkedHashSet<>(bulletPoints); }
+    public List<String> getImageUrls() { return new ArrayList<>(imageUrls); }
+    public void setImageUrls(List<String> imageUrls) { this.imageUrls = imageUrls == null ? new LinkedHashSet<>() : new LinkedHashSet<>(imageUrls); }
     public Boolean getActive() { return active; }
     public void setActive(Boolean active) { this.active = active; }
     public Integer getSortOrder() { return sortOrder; }
