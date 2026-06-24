@@ -23,7 +23,7 @@ public class Contact {
     private String subject; // "Tư vấn" | "Hợp tác" | "Khác"
 
     @NotBlank
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "NVARCHAR(MAX)")
     private String message;
 
     private String status = "PENDING"; // "PENDING" | "RESOLVED"

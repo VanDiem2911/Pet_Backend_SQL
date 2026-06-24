@@ -20,7 +20,7 @@ public class PetService {
     private BigDecimal price;
     private String priceLabel;
     private String unit;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "NVARCHAR(MAX)")
     private String description;
 
     @ElementCollection(fetch = FetchType.EAGER)

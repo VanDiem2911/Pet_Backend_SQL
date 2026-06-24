@@ -15,7 +15,7 @@ public class Promotion {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     @NotBlank private String title;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "NVARCHAR(MAX)")
     private String description;
     @Min(0) @Max(100) private Integer discountPercent = 0;
     @Min(0) private Integer discountAmount = 0;

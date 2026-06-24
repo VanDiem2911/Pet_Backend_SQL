@@ -27,7 +27,7 @@ public class Appointment {
 
     private String checkoutDate; // boarding only
     private String timeSlot;    // grooming only
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "NVARCHAR(MAX)")
     private String notes;
     private String status = "PENDING";
     private String appliedPromotionId;
